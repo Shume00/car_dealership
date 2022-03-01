@@ -12,8 +12,7 @@ public class Dealership {
     private String name;
     private String location;
 
-    public Dealership(Long id, String name, String location) {
-        this.id = id;
+    public Dealership(String name, String location) {
         this.name = name;
         this.location = location;
     }

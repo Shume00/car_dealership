@@ -14,8 +14,7 @@ public class CarBrand {
 
     private String name;
 
-    public CarBrand(Long id, String name, String description) {
-        this.id = id;
+    public CarBrand(String name, String description) {
         this.name = name;
         this.description = description;
     }
