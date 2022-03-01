@@ -24,4 +24,5 @@ public class CarBrand {
     public CarBrand() {
 
     }
+
 }
