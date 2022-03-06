@@ -15,12 +15,9 @@ public interface CarService {
 
     Optional<Car> findByModel(String model);
 
-   Car save(String model, Long year, Long dealership, Long carBrand, Long price);
-
+    Car save(String model, Long year, Long dealership, Long carBrand, Long price);
 
     Car edit(Long id, String model, Long year, Long dealership, Long carBrand, Long price);
-
-    Optional<Car> findByName(String name);
 
     void deleteById(Long id);
 }

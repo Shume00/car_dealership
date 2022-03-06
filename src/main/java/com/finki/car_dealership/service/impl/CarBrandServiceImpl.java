@@ -1,11 +1,13 @@
 package com.finki.car_dealership.service.impl;
 
 import com.finki.car_dealership.model.CarBrand;
+import com.finki.car_dealership.model.exceptions.CarBrandNotFoundException;
 import com.finki.car_dealership.repository.CarBrandRepository;
 import com.finki.car_dealership.service.CarBrandService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarBrandServiceImpl implements CarBrandService {
@@ -53,6 +55,11 @@ public class CarBrandServiceImpl implements CarBrandService {
     @Override
     public List<CarBrand> searchCategories(String searchText) {
         return carBrandRepository.findAllByNameLike(searchText);
+    }
+
+    @Override
+    public CarBrand findById(Long id) {
+        return this.carBrandRepository.findById(id).orElseThrow(()-> new CarBrandNotFoundException(id));
     }
 }
 
