@@ -13,9 +13,9 @@ public interface CarBrandService {
 
     void delete(String name);
 
-    List<CarBrand> listCategories();
+    List<CarBrand> listCarBrands();
 
-    List<CarBrand> searchCategories(String searchText);
+    List<CarBrand> searchCarBrands(String searchText);
 
     CarBrand findById(Long id);
 }

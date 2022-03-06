@@ -4,10 +4,11 @@ import com.finki.car_dealership.model.Dealership;
 import com.finki.car_dealership.model.exceptions.DealershipNotFoundException;
 import com.finki.car_dealership.repository.DealershipRepository;
 import com.finki.car_dealership.service.DealershipService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class DealershipServiceImpl implements DealershipService {
 
     private final DealershipRepository dealershipRepository;

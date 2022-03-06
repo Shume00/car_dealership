@@ -10,5 +10,5 @@ public interface DealershipService {
     Dealership findById(Long id);
     List<Dealership> findAll();
     Optional<Dealership> save(String name, String location);
-    void deleteById(Long id);
+    void  deleteById(Long id);
 }

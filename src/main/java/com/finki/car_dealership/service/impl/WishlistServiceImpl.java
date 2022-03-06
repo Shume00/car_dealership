@@ -6,9 +6,10 @@ import com.finki.car_dealership.repository.CarRepository;
 import com.finki.car_dealership.repository.UserRepository;
 import com.finki.car_dealership.repository.WishlistRepository;
 import com.finki.car_dealership.service.WishlistService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class WishlistServiceImpl implements WishlistService {
 
     private final WishlistRepository wishlistRepository;

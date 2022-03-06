@@ -48,12 +48,12 @@ public class CarBrandServiceImpl implements CarBrandService {
     }
 
     @Override
-    public List<CarBrand> listCategories() {
+    public List<CarBrand> listCarBrands() {
         return carBrandRepository.findAll();
     }
 
     @Override
-    public List<CarBrand> searchCategories(String searchText) {
+    public List<CarBrand> searchCarBrands(String searchText) {
         return carBrandRepository.findAllByNameLike(searchText);
     }
 
