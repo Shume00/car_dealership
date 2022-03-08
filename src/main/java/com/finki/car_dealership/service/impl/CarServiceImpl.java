@@ -41,7 +41,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Optional<Car> findByModel(String model) {
-        return this.carBrandRepository.findByModel(model);
+        return this.carRepository.findByModel(model);
     }
 
     @Override

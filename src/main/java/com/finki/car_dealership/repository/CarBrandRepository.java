@@ -12,6 +12,6 @@ public interface CarBrandRepository extends JpaRepository<CarBrand,Long> {
 
     List<CarBrand> findAllByNameLike(String searchText);
 
-    Optional<Car> findByModel(String model);
+
 }
 

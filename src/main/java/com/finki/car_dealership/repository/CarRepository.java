@@ -11,5 +11,7 @@ public interface CarRepository extends JpaRepository<Car,Long> {
 
     Optional<Car> findCarByYearAfter(Long year);
 
-    void deleteByName(String name);
+
+
+    Optional<Car> findByModel(String model);
 }
