@@ -3,6 +3,7 @@ package com.finki.car_dealership.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "car")
 public class Car {
 
 
