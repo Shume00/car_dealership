@@ -37,7 +37,13 @@ public class HomeController {
      *
      * @return The view "list.html".
      */
-    @GetMapping({"/","/cars"})
+    @GetMapping({"/","/home"})
+    public String showHome(Model model) {
+        return "home.html";
+    }
+
+
+    @GetMapping({"/cars"})
     public String showList(Model model) {
         List<Car> cars;
         List<Dealership> dealershipList;
@@ -46,7 +52,25 @@ public class HomeController {
         cars = this.carService.findAll();
         model.addAttribute("cars",cars);
         model.addAttribute("dealerships",dealershipList);
-        return "home.html";
+        return "cars.html";
+    }
+
+    @GetMapping({"/dealerships"})
+    public String showDealerships(Model model) {
+        List<Dealership> dealerships;
+        dealerships = this.dealershipService.findAll();
+        model.addAttribute("dealerships",dealerships);
+        return "dealerships.html";
+    }
+
+    @GetMapping({"/dealerships/{id}"})
+    public String showDealershipwithCars(
+            @PathVariable Long id,
+            Model model){
+        List<Car> cars;
+        cars = this.carService.findByDealershipId(id);
+        model.addAttribute("cars",cars);
+        return "dealership.html";
     }
 
     /**

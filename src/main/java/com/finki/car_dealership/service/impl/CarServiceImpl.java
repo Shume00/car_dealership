@@ -45,6 +45,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> findByDealershipId (Long id) {return this.carRepository.findByDealershipId(id);}
+
+    @Override
     @Transactional
     public Car save(String model, Long year, Long dealershipId, Long carBrandId, Long price) {
         Dealership dealership = dealershipRepository.findById(dealershipId).orElseThrow(()-> new DealershipNotFoundException(dealershipId));
