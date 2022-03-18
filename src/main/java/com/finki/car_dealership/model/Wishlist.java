@@ -25,4 +25,16 @@ public class Wishlist {
     public Wishlist() {
 
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public List<Car> getCars() {
+        return cars;
+    }
 }

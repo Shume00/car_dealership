@@ -1,13 +1,12 @@
-package com.finki.car_dealership.service.impl;
+package com.finki.car_dealership.model.service.impl;
 
 import com.finki.car_dealership.model.CarBrand;
 import com.finki.car_dealership.model.exceptions.CarBrandNotFoundException;
 import com.finki.car_dealership.repository.CarBrandRepository;
-import com.finki.car_dealership.service.CarBrandService;
+import com.finki.car_dealership.model.service.CarBrandService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CarBrandServiceImpl implements CarBrandService {

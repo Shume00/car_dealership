@@ -1,11 +1,11 @@
-package com.finki.car_dealership.service.impl;
+package com.finki.car_dealership.model.service.impl;
 
 import com.finki.car_dealership.model.Car;
 import com.finki.car_dealership.model.Wishlist;
 import com.finki.car_dealership.repository.CarRepository;
 import com.finki.car_dealership.repository.UserRepository;
 import com.finki.car_dealership.repository.WishlistRepository;
-import com.finki.car_dealership.service.WishlistService;
+import com.finki.car_dealership.model.service.WishlistService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

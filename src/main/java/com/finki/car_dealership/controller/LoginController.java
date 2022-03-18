@@ -2,7 +2,7 @@ package com.finki.car_dealership.controller;
 
 import com.finki.car_dealership.model.User;
         import com.finki.car_dealership.model.exceptions.InvalidUserCredentialsException;
-        import com.finki.car_dealership.service.AuthService;
+        import com.finki.car_dealership.model.service.AuthService;
         import org.springframework.stereotype.Controller;
         import org.springframework.ui.Model;
         import org.springframework.web.bind.annotation.GetMapping;

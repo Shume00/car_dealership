@@ -1,4 +1,4 @@
-package com.finki.car_dealership.service.impl;
+package com.finki.car_dealership.model.service.impl;
 
 import com.finki.car_dealership.model.Car;
 import com.finki.car_dealership.model.CarBrand;
@@ -8,7 +8,7 @@ import com.finki.car_dealership.model.exceptions.DealershipNotFoundException;
 import com.finki.car_dealership.repository.CarBrandRepository;
 import com.finki.car_dealership.repository.CarRepository;
 import com.finki.car_dealership.repository.DealershipRepository;
-import com.finki.car_dealership.service.CarService;
+import com.finki.car_dealership.model.service.CarService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

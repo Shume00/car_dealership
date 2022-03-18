@@ -3,19 +3,20 @@ package com.finki.car_dealership.controller;
 
 import com.finki.car_dealership.model.Car;
 import com.finki.car_dealership.model.Dealership;
-import com.finki.car_dealership.service.CarBrandService;
-import com.finki.car_dealership.service.CarService;
+import com.finki.car_dealership.model.User;
+import com.finki.car_dealership.model.Wishlist;
+import com.finki.car_dealership.model.service.CarBrandService;
+import com.finki.car_dealership.model.service.CarService;
 
-import com.finki.car_dealership.service.DealershipService;
+import com.finki.car_dealership.model.service.DealershipService;
+import com.finki.car_dealership.model.service.WishlistService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -23,11 +24,13 @@ public class HomeController {
     private final CarService carService;
     private final DealershipService dealershipService;
     private final CarBrandService carBrandService;
+    private final WishlistService wishlistService;
 
-    public HomeController(CarService carService, DealershipService dealershipService, CarBrandService carBrandService) {
+    public HomeController(CarService carService, DealershipService dealershipService, CarBrandService carBrandService, WishlistService service, WishlistService wishlistService) {
         this.carService = carService;
         this.dealershipService = dealershipService;
         this.carBrandService = carBrandService;
+        this.wishlistService = wishlistService;
     }
 
     /**
@@ -84,7 +87,34 @@ public class HomeController {
         model.addAttribute("dealerships",dealershipService.findAll());
         return "form.html";
     }
-//
+
+    @GetMapping("/wishlist")
+    public String getShoppingCartPage(@RequestParam(required = false) String error,
+                                      HttpServletRequest req,
+                                      Model model) {
+        if (error != null && !error.isEmpty()) {
+            model.addAttribute("hasError", true);
+            model.addAttribute("error", error);
+        }
+        String username = req.getRemoteUser();
+        Wishlist wishlist = this.wishlistService.getWishlist(username);
+        model.addAttribute("products", this.wishlistService.listAllCarsInWishlist(wishlist.getId()));
+        model.addAttribute("bodyContent", "wishlist");
+        return "wishlist";
+    }
+
+    @PostMapping("/add-product/{id}")
+    public String addProductToShoppingCart(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
+        try {
+            User user = (User) authentication.getPrincipal();
+            this.wishlistService.addCarToWishlist(user.getUsername(), id);
+            return "redirect:/wishlist";
+        } catch (RuntimeException exception) {
+            return "redirect:/shopping-cart?error=" + exception.getMessage();
+        }
+    }
+
+    //
 //    /**
 //     * This method should display the "form.html" template.
 //     * However, in this case all 'input' elements should be filled with the appropriate value for the entity that is updated.

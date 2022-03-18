@@ -1,4 +1,4 @@
-package com.finki.car_dealership.service;
+package com.finki.car_dealership.model.service;
 
 import com.finki.car_dealership.model.User;
 

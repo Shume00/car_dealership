@@ -1,10 +1,10 @@
-package com.finki.car_dealership.service.impl;
+package com.finki.car_dealership.model.service.impl;
 
 import com.finki.car_dealership.model.User;
 import com.finki.car_dealership.model.exceptions.InvalidArgumentsException;
 import com.finki.car_dealership.model.exceptions.InvalidUserCredentialsException;
+import com.finki.car_dealership.model.service.AuthService;
 import com.finki.car_dealership.repository.UserRepository;
-import com.finki.car_dealership.service.AuthService;
 import org.springframework.stereotype.Service;
 
 @Service

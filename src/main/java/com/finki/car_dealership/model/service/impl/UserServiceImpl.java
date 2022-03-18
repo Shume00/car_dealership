@@ -1,12 +1,11 @@
-package com.finki.car_dealership.service.impl;
+package com.finki.car_dealership.model.service.impl;
 
 import com.finki.car_dealership.model.Role;
 import com.finki.car_dealership.model.User;
 import com.finki.car_dealership.model.exceptions.InvalidUsernameOrPasswordException;
 import com.finki.car_dealership.model.exceptions.UsernameAlreadyExistsException;
 import com.finki.car_dealership.repository.UserRepository;
-import com.finki.car_dealership.service.UserService;
-import org.hibernate.service.UnknownServiceException;
+import com.finki.car_dealership.model.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;

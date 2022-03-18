@@ -1,9 +1,8 @@
 package com.finki.car_dealership.controller;
 
 import com.finki.car_dealership.model.Role;
-import com.finki.car_dealership.model.exceptions.InvalidArgumentsException;
-import com.finki.car_dealership.service.AuthService;
-import com.finki.car_dealership.service.UserService;
+import com.finki.car_dealership.model.service.AuthService;
+import com.finki.car_dealership.model.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
