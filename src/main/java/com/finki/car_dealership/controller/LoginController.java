@@ -33,7 +33,7 @@ public String login(HttpServletRequest request,Model model){
         try{
                 user=this.authService.login(request.getParameter("username"),
                 request.getParameter("password"));
-                request.getSession().setAttribute("user",user);
+                request.getSession().setAttribute("user", user);
                 return"redirect:/home";
         }
         catch(InvalidUserCredentialsException exception){

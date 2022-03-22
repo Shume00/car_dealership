@@ -23,9 +23,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-        http.httpBasic().disable();
+      http.csrf().disable()
+              .authorizeRequests()
+              .antMatchers("/", "/home", "/assets/**", "/register", "/cars", "/api/**").permitAll()
+              .antMatchers("/admin/**").hasRole("ADMIN")
+              .anyRequest()
+              .authenticated()
+              .and()
+              .formLogin()
+              .loginPage("/login").permitAll()
+              .failureUrl("/login?error=BadCredentials")
+              .defaultSuccessUrl("/cars", true)
+              .and()
+              .logout()
+              .logoutUrl("/logout")
+              .clearAuthentication(true)
+              .invalidateHttpSession(true)
+              .deleteCookies("JSESSIONID")
+              .logoutSuccessUrl("/login")
+              .and()
+              .exceptionHandling().accessDeniedPage("/access_denied");
     }
 
 }

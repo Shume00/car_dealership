@@ -107,14 +107,14 @@ public class HomeController {
         return "wishlist";
     }
 
-    @PostMapping("/add-product/{id}")
+    @PostMapping("/add-car/{id}")
     public String addProductToShoppingCart(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
         try {
             User user = (User) authentication.getPrincipal();
             this.wishlistService.addCarToWishlist(user.getUsername(), id);
             return "redirect:/wishlist";
         } catch (RuntimeException exception) {
-            return "redirect:/shopping-cart?error=" + exception.getMessage();
+            return "redirect:/wishlist?error=" + exception.getMessage();
         }
     }
 
