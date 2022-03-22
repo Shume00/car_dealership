@@ -1,9 +1,12 @@
 package com.finki.car_dealership.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 public class Wishlist {
     @Id
@@ -16,8 +19,8 @@ public class Wishlist {
     @ManyToMany
     private List<Car> cars;
 
-    public Wishlist(User user) {
 
+    public Wishlist(User user) {
         this.user = user;
         this.cars = new ArrayList<>();
     }

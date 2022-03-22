@@ -2,6 +2,7 @@ package com.finki.car_dealership.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,26 +24,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
     protected void configure(HttpSecurity http) throws Exception {
-      http.csrf().disable()
-              .authorizeRequests()
-              .antMatchers("/", "/home", "/assets/**", "/register", "/cars", "/api/**").permitAll()
-              .antMatchers("/admin/**").hasRole("ADMIN")
-              .anyRequest()
-              .authenticated()
-              .and()
-              .formLogin()
-              .loginPage("/login").permitAll()
-              .failureUrl("/login?error=BadCredentials")
-              .defaultSuccessUrl("/cars", true)
-              .and()
-              .logout()
-              .logoutUrl("/logout")
-              .clearAuthentication(true)
-              .invalidateHttpSession(true)
-              .deleteCookies("JSESSIONID")
-              .logoutSuccessUrl("/login")
-              .and()
-              .exceptionHandling().accessDeniedPage("/access_denied");
+                    http.csrf().disable()
+                            .authorizeRequests()
+                            .antMatchers("/","/home","/assets/**","/api/**","/register","/wishlist","/add-car/**").permitAll()
+                            .antMatchers("/admin/**").hasRole("ADMIN")
+                            .antMatchers(HttpMethod.POST).permitAll()
+                            .antMatchers(HttpMethod.GET).permitAll()
+                            .anyRequest()
+                            .authenticated()
+                            .and()
+                            .formLogin()
+                            .loginPage("/login").permitAll()
+                            .failureUrl("/login?error=BadCredentials")
+                            .defaultSuccessUrl("/home", true)
+                            .and()
+                            .logout()
+                            .logoutUrl("/logout")
+                            .clearAuthentication(true)
+                            .invalidateHttpSession(true)
+                            .deleteCookies("JSESSIONID")
+                            .logoutSuccessUrl("/login")
+                            .and()
+                            .exceptionHandling().accessDeniedPage("/access_denied");
+                            http.headers().frameOptions().disable();
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) {
+
+        auth.authenticationProvider(authenticationProvider);
+    }
 }

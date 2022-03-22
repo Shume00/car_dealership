@@ -92,8 +92,8 @@ public class HomeController {
         return "form.html";
     }
 
-    @GetMapping("/wishlist")
-    public String getShoppingCartPage(@RequestParam(required = false) String error,
+   /* @GetMapping("/wishlist")
+    public String getWishlistPage(@RequestParam(required = false) String error,
                                       HttpServletRequest req,
                                       Model model) {
         if (error != null && !error.isEmpty()) {
@@ -108,7 +108,7 @@ public class HomeController {
     }
 
     @PostMapping("/add-car/{id}")
-    public String addProductToShoppingCart(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
+    public String addCarToWishlist(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
         try {
             User user = (User) authentication.getPrincipal();
             this.wishlistService.addCarToWishlist(user.getUsername(), id);
@@ -116,7 +116,7 @@ public class HomeController {
         } catch (RuntimeException exception) {
             return "redirect:/wishlist?error=" + exception.getMessage();
         }
-    }
+    } */
 
     //
 //    /**

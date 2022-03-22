@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class CustomUsernamePasswordAuthenticationProvider {
+public class CustomUsernamePasswordAuthenticationProvider implements AuthenticationProvider {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -39,5 +39,10 @@ public class CustomUsernamePasswordAuthenticationProvider {
             throw new BadCredentialsException("Password is incorrect!");
         }
         return new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
+    }
+
+    @Override
+    public boolean supports(Class<?> authentication) {
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }

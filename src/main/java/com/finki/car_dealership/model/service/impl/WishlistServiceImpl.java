@@ -51,7 +51,6 @@ public class WishlistServiceImpl implements WishlistService {
         return this.wishlistRepository.findById(wishlistId).get().getCars();
     }
 
-
     @Override
     public Wishlist addCarToWishlist(String username, Long carId) {
         Wishlist wishlist = this.getWishlist(username);

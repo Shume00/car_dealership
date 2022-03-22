@@ -5,6 +5,47 @@
     <title>This is the wishlist</title>
 </head>
 <body>
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading">
+                <th:block th:if="${#request.getRemoteUser() != null}" th:text="${#request.getRemoteUser()}"></th:block>
+                's Wishlist
+            </h3>
+        </div>
+    </section>
 
+    <div th:if="${hasError}">
+        <h5 class="text-center text-danger" th:text="${error}"></h5>
+    </div>
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${cars.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">CarBrand</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Year</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="car : ${cars}" class="cart-item">
+                            <td th:text="${car.getCarBrand()}"></td>
+                            <td th:text="${car.getModel()}"></td>
+                            <td th:text="${car.getPrice()}"></td>
+                            <td th:text="${car.getYear()}"></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
 </body>
 </html>

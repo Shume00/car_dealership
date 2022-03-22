@@ -48,8 +48,10 @@
 <!--                    <button type="submit" class="delete-item">Delete</button>-->
 <!--                </form>-->
                 <!-- EmployeeController.showEdit (Only ADMIN can see this element)  sec:authorize="hasRole('ROLE_ADMIN')"-->
+                <a class="addCarButton" th:href="@{'/add-car/{id}' (id=${car.getId()})}">Add Car to Wishlist</a>
                 <a class="dealership" th:href="@{'/dealerships/{id}'(id=${car.getDealership().getId()})}"
                    >Visit Dealership</a>
+
             </td>
         </tr>
     </table>

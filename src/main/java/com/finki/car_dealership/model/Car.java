@@ -1,8 +1,11 @@
 package com.finki.car_dealership.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 @Table(name = "car")
 public class Car {
 
