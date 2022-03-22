@@ -1,5 +1,10 @@
 package com.finki.car_dealership.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import com.finki.car_dealership.model.Car;
 import com.finki.car_dealership.model.Dealership;
@@ -10,7 +15,6 @@ import com.finki.car_dealership.model.service.CarService;
 
 import com.finki.car_dealership.model.service.DealershipService;
 import com.finki.car_dealership.model.service.WishlistService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -98,7 +102,7 @@ public class HomeController {
         }
         String username = req.getRemoteUser();
         Wishlist wishlist = this.wishlistService.getWishlist(username);
-        model.addAttribute("products", this.wishlistService.listAllCarsInWishlist(wishlist.getId()));
+        model.addAttribute("cars", this.wishlistService.listAllCarsInWishlist(wishlist.getId()));
         model.addAttribute("bodyContent", "wishlist");
         return "wishlist";
     }

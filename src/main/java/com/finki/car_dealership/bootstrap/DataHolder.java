@@ -33,6 +33,8 @@ public class DataHolder {
         cars.add(new Car("Clio", 2008L, dealerships.get(0), carBrands.get(1), 3500L ));
         cars.add(new Car("Octavia", 2010L, dealerships.get(2), carBrands.get(2), 7000L ));
 
+        users.add(new User("shume","password","andrej","shumkovski",Role.ROLE_ADMIN));
+
 
     }
 

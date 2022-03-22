@@ -24,22 +24,22 @@ public class LoginController{
 @GetMapping
 public String getLoginPage(Model model){
         model.addAttribute("bodyContent","login");
-        return"master-template";
+        return"login.html";
         }
 
 @PostMapping
 public String login(HttpServletRequest request,Model model){
         User user=null;
         try{
-        user=this.authService.login(request.getParameter("username"),
-        request.getParameter("password"));
-        request.getSession().setAttribute("user",user);
-        return"redirect:/home";
+                user=this.authService.login(request.getParameter("username"),
+                request.getParameter("password"));
+                request.getSession().setAttribute("user",user);
+                return"redirect:/home";
         }
         catch(InvalidUserCredentialsException exception){
-        model.addAttribute("hasError",true);
-        model.addAttribute("error",exception.getMessage());
-        return null;
+                model.addAttribute("hasError",true);
+                model.addAttribute("error",exception.getMessage());
+                return "login";
         }
         }
         }

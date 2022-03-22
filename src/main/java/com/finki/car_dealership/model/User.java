@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
+@Table (name = "user")
 public class User implements UserDetails {
 
     @Id
@@ -49,12 +50,12 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
