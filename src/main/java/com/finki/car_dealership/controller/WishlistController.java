@@ -35,7 +35,7 @@ public class WishlistController {
         return "wishlist";
     }
 
-    @PostMapping("/add-car/{id}")
+    @GetMapping("/add-car/{id}")
     public String addCarToWishlist(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
             User user = (User) authentication.getPrincipal();
             this.wishlistService.addCarToWishlist(user.getUsername(), id);

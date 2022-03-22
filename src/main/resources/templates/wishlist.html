@@ -34,7 +34,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="car : ${cars}" class="cart-item">
-                            <td th:text="${car.getCarBrand()}"></td>
+                            <td th:text="${car.getCarBrand().getName()}"></td>
                             <td th:text="${car.getModel()}"></td>
                             <td th:text="${car.getPrice()}"></td>
                             <td th:text="${car.getYear()}"></td>
