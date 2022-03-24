@@ -14,7 +14,6 @@ import com.finki.car_dealership.model.service.WishlistService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class WishlistServiceImpl implements WishlistService {
@@ -60,6 +59,17 @@ public class WishlistServiceImpl implements WishlistService {
                 .stream().anyMatch(i -> i.getId().equals(carId)))
             throw new CarAlreadyInWishlistException(carId, username);
         wishlist.getCars().add(car);
+        return this.wishlistRepository.save(wishlist);
+    }
+    @Override
+    public Wishlist removeCarToWishlist(String username, Long carId) {
+        Wishlist wishlist = this.getWishlist(username);
+        Car car = this.carRepository.findById(carId)
+                .orElseThrow(() -> new CarNotFoundException(carId));
+        if(wishlist.getCars()
+                .stream().noneMatch(i -> i.getId().equals(carId)))
+            throw new CarNotFoundException(carId);
+        wishlist.getCars().remove(car);
         return this.wishlistRepository.save(wishlist);
     }
 

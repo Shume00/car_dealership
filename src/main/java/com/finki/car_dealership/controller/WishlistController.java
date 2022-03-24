@@ -41,4 +41,10 @@ public class WishlistController {
             this.wishlistService.addCarToWishlist(user.getUsername(), id);
             return "redirect:/wishlist";
     }
+    @GetMapping("/wishlist/{id}/delete")
+    public String removeCarToWishlist(@PathVariable Long id, HttpServletRequest req, Authentication authentication) {
+        User user = (User) authentication.getPrincipal();
+        this.wishlistService.removeCarToWishlist(user.getUsername(), id);
+        return "redirect:/wishlist";
+    }
 }
