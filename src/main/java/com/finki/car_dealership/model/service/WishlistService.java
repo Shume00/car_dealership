@@ -10,4 +10,5 @@ public interface WishlistService {
     List<Car> listAllCarsInWishlist(Long listId);
     Wishlist getWishlist(String username);
     Wishlist addCarToWishlist(String username, Long carId);
+   
 }

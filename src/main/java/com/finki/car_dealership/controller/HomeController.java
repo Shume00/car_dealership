@@ -89,7 +89,33 @@ public class HomeController {
     @GetMapping("/cars/add")
     public String showAdd(Model model) {
         model.addAttribute("dealerships",dealershipService.findAll());
+        model.addAttribute("carBrands",carBrandService.listCarBrands());
         return "form.html";
+    }
+
+    @GetMapping("cars/{id}/edit")
+    public String editCar(@PathVariable Long id, Model model) {
+
+            Car car = this.carService.findById(id).get();
+            List<Dealership> dealershipList= this.dealershipService.findAll();
+            model.addAttribute("car",car);
+            model.addAttribute("dealerships",dealershipList);
+            model.addAttribute("carBrands",carBrandService.listCarBrands());
+            return "form.html";
+
+
+
+//        if (this.productService.findById(id).isPresent()) {
+//            Product product = this.productService.findById(id).get();
+//            List<Manufacturer> manufacturers = this.manufacturerService.findAll();
+//            List<Category> categories = this.categoryService.listCategories();
+//            model.addAttribute("manufacturers", manufacturers);
+//            model.addAttribute("categories", categories);
+//            model.addAttribute("product", product);
+//            model.addAttribute("bodyContent", "add-product");
+//            return "master-template";
+
+
     }
 
    /* @GetMapping("/wishlist")
@@ -152,24 +178,17 @@ public class HomeController {
         return "redirect:/cars";
     }
 //
-//    /**
-//     * This method should update an entity given the arguments it takes.
-//     * The method should be mapped on path '/employees/[id]'.
-//     * After the entity is updated, the list of entities should be displayed.
-//     *
-//     * @return The view "list.html".
-//     */
-//    @PostMapping("/employees/{id}")
-//    public String update(@PathVariable Long id,
-//                         @RequestParam String name,
-//                         @RequestParam String email,
-//                         @RequestParam String password,
-//                         @RequestParam EmployeeType type,
-//                         @RequestParam List<Long> skillId,
-//                         @RequestParam String employmentDate) {
-//        this.service.update(id, name, email, password, type, skillId, LocalDate.parse(employmentDate));
-//        return "redirect:/employees";
-//    }
+
+    @PostMapping("/cars/{id}")
+    public String update(@PathVariable Long id,
+                         @RequestParam Long carBrand,
+                         @RequestParam String model,
+                         @RequestParam Long year,
+                         @RequestParam Long price,
+                         @RequestParam Long dealership) {
+        this.carService.edit(id, model, year,dealership , carBrand, price);
+        return "redirect:/cars";
+    }
 //
 //    /**
 //     * This method should delete the entities that has the appropriate identifier.
@@ -178,9 +197,9 @@ public class HomeController {
 //     *
 //     * @return The view "list.html".
 //     */
-//    @PostMapping("/employees/{id}/delete")
-//    public String delete(@PathVariable Long id) {
-//        this.service.delete(id);
-//        return "redirect:/employees";
-//    }
+    @PostMapping("/cars/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        this.carService.deleteById(id);
+        return "redirect:/cars";
+    }
 }

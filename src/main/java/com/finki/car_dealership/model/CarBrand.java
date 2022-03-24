@@ -16,6 +16,10 @@ public class CarBrand {
         return name;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

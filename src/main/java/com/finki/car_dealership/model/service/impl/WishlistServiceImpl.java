@@ -62,4 +62,6 @@ public class WishlistServiceImpl implements WishlistService {
         wishlist.getCars().add(car);
         return this.wishlistRepository.save(wishlist);
     }
+
+
 }

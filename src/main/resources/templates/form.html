@@ -6,20 +6,31 @@
 <body>
 <!-- The form should submit to EmployeeController.create or EmployeeController.update,
      depending on whether we are creating or editing an entity -->
-<form method="POST" th:action="@{'/cars'}">
+<form method="POST" th:action=" ${car != null} ? @{'/cars/{id}' (id=${car.getId()})} : @{'/cars'}">
+<!--    ${emp != null} ? @{'/employees/{id}'(id=${emp.getId()})} : @{'/employees'}-->
+<!--    <div>-->
+<!--        <label for="f1">Car Brand</label>-->
+<!--        <input type="text"-->
+<!--               id="f1"-->
+<!--               name="carBrand"-->
+<!--               required>-->
+<!--    </div>-->
     <div>
-        <label for="f1">Car Brand</label>
-        <input type="text"
-               id="f1"
-               name="carBrand"
-               required>
+        <label>Car Brand</label><br/>
+        <select id="f1" name="carBrand" >
+            <!-- For each type you should have one <option> like below  -->
+            <option th:each="carBrand : ${carBrands}" th:text="${carBrand.getName()}" th:value="${carBrand.getId()}"
+                    th:selected=" ${car!=null} ? ${car.getCarBrand().equals(carBrand)} "> [CarBrand_name]</option>
+        </select>
     </div>
     <div>
         <label for="f2">Model</label>
         <input type="text"
                id="f2"
                name="model"
-               required>
+               th:value="${car?.getModel()}"
+               required
+        >
     </div>
     <div>
         <label for="f3">Year</label>
@@ -27,6 +38,7 @@
         <input type="number"
                id="f3"
                name="year"
+               th:value="${car?.getYear()}"
                required>
     </div>
     <div>
@@ -34,13 +46,15 @@
         <input type="number"
                id="f6"
                name="price"
+               th:value="${car?.getPrice()}"
                required>
     </div>
     <div>
         <label>Dealership</label><br/>
         <select id="f4" name="dealership" >
             <!-- For each type you should have one <option> like below  -->
-            <option th:each="dealership : ${dealerships}" th:text="${dealership.getName()}" th:value="${dealership.getName()}"> [dealersip_name]</option>
+            <option th:each="dealership : ${dealerships}" th:text="${dealership.getName()}" th:value="${dealership.getId()}"
+                    th:selected=" ${car!=null} ? ${car.getDealership().equals(dealership)} "> [dealersip_name]</option>
         </select>
     </div>
 <!--    <div>-->
