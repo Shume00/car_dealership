@@ -6,9 +6,11 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -44,11 +46,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             .and()
                             .exceptionHandling().accessDeniedPage("/access_denied");
                             http.headers().frameOptions().disable();
+
+
     }
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
 
         auth.authenticationProvider(authenticationProvider);
     }
+
 }
