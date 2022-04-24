@@ -3,7 +3,9 @@ package com.finki.car_dealership.controller;
 import com.finki.car_dealership.model.User;
         import com.finki.car_dealership.model.exceptions.InvalidUserCredentialsException;
         import com.finki.car_dealership.model.service.AuthService;
-        import org.springframework.stereotype.Controller;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
         import org.springframework.ui.Model;
         import org.springframework.web.bind.annotation.GetMapping;
         import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +26,10 @@ public class LoginController{
 @GetMapping
 public String getLoginPage(Model model){
         model.addAttribute("bodyContent","login");
-        return"login.html";
+                if (SecurityContextHolder.getContext().getAuthentication()==null || SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) {
+                        return"login.html";
+                }
+                return "redirect:/home";
         }
 
 @PostMapping

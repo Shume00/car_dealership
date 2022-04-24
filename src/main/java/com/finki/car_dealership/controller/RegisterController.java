@@ -3,6 +3,8 @@ package com.finki.car_dealership.controller;
 import com.finki.car_dealership.model.Role;
 import com.finki.car_dealership.model.service.AuthService;
 import com.finki.car_dealership.model.service.UserService;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,10 @@ public class RegisterController {
             model.addAttribute("error", error);
         }
         model.addAttribute("bodyContent","register");
-        return "register.html";
+        if (SecurityContextHolder.getContext().getAuthentication()==null || SecurityContextHolder.getContext().getAuthentication() instanceof AnonymousAuthenticationToken) {
+            return"register.html";
+        }
+        return "redirect:/home";
     }
 
     @PostMapping

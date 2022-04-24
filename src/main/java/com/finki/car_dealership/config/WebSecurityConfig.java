@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             .authenticated()
                             .and()
                             .formLogin()
+                            .loginPage("/login").permitAll()
                             .failureUrl("/login?error=BadCredentials")
                             .defaultSuccessUrl("/home", true)
                             .and()
@@ -42,12 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             .clearAuthentication(true)
                             .invalidateHttpSession(true)
                             .deleteCookies("JSESSIONID")
-                            .logoutSuccessUrl("/login")
+                            .logoutSuccessUrl("/home")
                             .and()
                             .exceptionHandling().accessDeniedPage("/access_denied");
                             http.headers().frameOptions().disable();
-
-
     }
 
 
