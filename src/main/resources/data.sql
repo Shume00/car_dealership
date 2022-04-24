@@ -50,4 +50,4 @@ INSERT INTO car (model, year, price, dealership_id, car_brand_id) VALUES ('C4', 
 INSERT INTO car (model, year, price, dealership_id, car_brand_id) VALUES ('C4 Cactus', 2021, 17390, 3, 3)
 INSERT INTO car (model, year, price, dealership_id, car_brand_id) VALUES ('C5 Aircross', 2021, 23690, 3, 3)
 
-INSERT INTO user (username, password, name, surname,IS_ACCOUNT_NON_EXPIRED,IS_ACCOUNT_NON_LOCKED,IS_CREDENTIALS_NON_EXPIRED,IS_ENABLED, role) VALUES ('shume', 'password', 'Andrej', 'Shumkovski', true, true, true,true, 'ROLE_ADMIN')
+INSERT INTO user (username, password, name, surname,IS_ACCOUNT_NON_EXPIRED,IS_ACCOUNT_NON_LOCKED,IS_CREDENTIALS_NON_EXPIRED,IS_ENABLED, role) VALUES ('shume', '$2a$10$0EUOC4coy90onRvBKYFec.TnJccH0VnNr9s8HlZjQFEXxnG6QZomq', 'Andrej', 'Shumkovski', true, true, true,true, 'ROLE_ADMIN')

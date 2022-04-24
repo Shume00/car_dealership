@@ -46,127 +46,39 @@
     </div>
 </nav>
 
-<div>
-    <!-- The form below should invoke the method EmployeeController.showNews -->
-<!--    <form id="filter-form">-->
-<!--        <label for="f1">Year</label>-->
-<!--        <input id="f1" type="number" name="year"/>-->
-<!--        <label for="f2">Model</label>-->
-<!--        <select id="f2" name="skillId">-->
-<!--            <option th:value="${null}">All</option>-->
-<!--            &lt;!&ndash; For each skill you should have one <option> like below  &ndash;&gt;-->
-<!--            <option th:each="skill : ${skills}" th:text="${skill.getName()}" th:value="${skill.getId()}"> [skill]</option>-->
-<!--        </select>-->
-<!--        <button id="filter" type="submit">Filter</button>-->
-<!--    </form>-->
-<!--    <div>-->
-<!--        &lt;!&ndash; EmployeeController.showAdd (Only ADMIN can see this element)&ndash;&gt;-->
-<!--        <a href="/employees/add" class="add-item"-->
-<!--           sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--            Add-->
-<!--        </a>-->
-<!--    </div>-->
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <th>Car Brand</th>-->
-<!--            <th>Model</th>-->
-<!--            <th>Year</th>-->
-<!--            <th>Price</th>-->
-<!--            <th>Actions</th>-->
-<!--        </tr>-->
-<!--        &lt;!&ndash; For each employees you should have one <tr> like below &ndash;&gt;-->
-<!--        <tr class="item" th:each="car : ${cars}">-->
-<!--            <td th:text="${car.getCarBrand().getName()}">[cars.carbrand]</td>-->
-<!--            <td th:text="${car.getModel()}">[cars.model]</td>-->
-<!--            <td th:text="${car.getYear()}">[cars.year]</td>-->
-<!--            <td th:text="${car.getPrice()}">[cars.price]</td>-->
-
-
-<!--            <td>-->
-<!--                &lt;!&ndash; EmployeeController.delete (Only ADMIN can see this element)&ndash;&gt;-->
-<!--&lt;!&ndash;                <form method="POST" th:action="@{'/employees/{id}/delete'(id=${emp.getId()})}"&ndash;&gt;-->
-<!--&lt;!&ndash;                      sec:authorize="hasRole('ROLE_ADMIN')">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button type="submit" class="delete-item">Delete</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                </form>&ndash;&gt;-->
-<!--                &lt;!&ndash; EmployeeController.showEdit (Only ADMIN can see this element)  sec:authorize="hasRole('ROLE_ADMIN')"&ndash;&gt;-->
-<!--                <a class="addCarButton" th:href="@{'/add-car/{id}' (id=${car.getId()})}">Add Car to Wishlist</a>-->
-<!--                <a class="dealership" th:href="@{'/dealerships/{id}'(id=${car.getDealership().getId()})}"-->
-<!--                   >Visit Dealership</a>-->
-
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
-
-
-    <div class="container mb-4">
-        <div class="col mb-3">
-            <div class="row">
-                <div class="col-sm-12 col-md-12" sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a href="/cars/add" class="btn btn-block btn-dark add-product-btn">
-                        Add new car
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12" th:if="${cars.size() > 0}">
-<!--                <th:block sec:authorize="hasRole('ROLE_ADMIN')">-->
-<!--                    <a th:href="@{'/cars/add'}"-->
-<!--                       class="btn btn-sm btn-info edit-product">-->
-<!--                        <i class="fa fa-trash">Add Car</i>-->
-<!--                    </a>-->
-<!--                </th:block>-->
-                <div class="table-responsive">
-
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th scope="col">Car Brand</th>
-                            <th scope="col">Car Model</th>
-                            <th scope="col">Year</th>
-                            <th scope="col">Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="car : ${cars}" class="car">
-                            <td th:text="${car.getCarBrand().getName()}"></td>
-                            <td th:text="${car.getModel()}"></td>
-                            <td th:text="${car.getYear()}"></td>
-                            <td th:text="${car.getPrice()}"></td>
-                            <td class="text-right">
-                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <form th:action="@{'/cars/{id}/delete' (id=${car.getId()})}"
-                                          th:method="DELETE">
-                                        <button type="submit"
-                                                class="btn btn-sm btn-danger delete-product">
-                                            <i class="fa fa-trash">Delete</i>
-                                        </button>
-                                    </form>
-                                </th:block>
-                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a th:href="@{'/cars/{id}/edit' (id=${car.getId()})}"
-                                       class="btn btn-sm btn-info edit-product">
-                                        <i class="fa fa-trash">Edit</i>
-                                    </a>
-                                </th:block>
-                                <form th:action="@{'/add-car/{id}' (id=${car.getId()})}"
-                                      sec:authorize="isAuthenticated()">
-                                    <button type="submit"
-                                            class="btn btn-sm btn-primary cart-product">
-                                        <i class="fa fa-trash">Add car to wishlist</i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/cars/add" class="btn btn-block btn-dark add-product-btn"> Add new car </a>
+    </hr>
 </div>
+
+<div class="w-100 row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-6 g-4">
+<div class="col align-self-center" th:each="car : ${cars}">
+        <div class="card h-100 mx-auto" style="width: 18rem;">
+            <img src="../images/carcardplaceholder.png" class="card-img-top" alt="carimage">
+            <div class="card-body">
+                <h5 th:text="${car.getCarBrand().getName()}" class="card-title"></h5>
+                <p th:text="${car.getModel()}" class="card-text"></p>
+                <p th:text="${car.getYear()}"></p>
+                <p th:text="${car.getPrice()}"></p>
+                <form th:action="@{'/add-car/{id}' (id=${car.getId()})}" sec:authorize="isAuthenticated()">
+                    <button type="submit" class="btn btn-sm btn-primary cart-product">
+                        <i class="fa fa-trash">Add car to wishlist</i>
+                    </button>
+                </form>
+                <form th:action="@{'/cars/{id}/delete' (id=${car.getId()})}" th:method="DELETE" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <button type="submit"
+                            class="btn btn-sm btn-danger delete-product">
+                        <i class="fa fa-trash">Delete</i>
+                    </button>
+                </form>
+                <a th:href="@{'/cars/{id}/edit' (id=${car.getId()})}" class="btn btn-sm btn-info edit-product" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <i class="fa fa-trash">Edit</i>
+                </a>
+            </div>
+        </div>
+</div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
