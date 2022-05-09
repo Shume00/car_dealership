@@ -53,20 +53,12 @@
         <th>Name</th>
         <th>Location</th>
     </tr>
-    <!-- For each employees you should have one <tr> like below -->
     <tr class="item" th:each="dealership : ${dealerships}">
         <td th:text="${dealership.getName()}">[dealerships.name]</td>
         <td th:text="${dealership.getLocation()}">[dealerships.location]</td>
 
 
-
         <td>
-            <!-- EmployeeController.delete (Only ADMIN can see this element)-->
-            <!--                <form method="POST" th:action="@{'/employees/{id}/delete'(id=${emp.getId()})}"-->
-            <!--                      sec:authorize="hasRole('ROLE_ADMIN')">-->
-            <!--                    <button type="submit" class="delete-item">Delete</button>-->
-            <!--                </form>-->
-            <!-- EmployeeController.showEdit (Only ADMIN can see this element)  sec:authorize="hasRole('ROLE_ADMIN')"-->
             <a class="dealership" th:href="@{'/dealerships/{id}'(id=${dealership.getId()})}"
             >Visit Dealership</a>
         </td>
