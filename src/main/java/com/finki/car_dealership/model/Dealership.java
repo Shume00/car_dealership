@@ -22,7 +22,7 @@ public class Dealership {
     }
 
     public String getLocation() {
-        return location;
+        return "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d"+location;
     }
 
     public Dealership(String name, String location) {

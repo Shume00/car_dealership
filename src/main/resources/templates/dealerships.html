@@ -2,10 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
-    <title>Dealerships</title>
+    <title>Cars</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 </head>
 <body>
 
@@ -48,30 +46,23 @@
     </div>
 </nav>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Location</th>
-    </tr>
-    <!-- For each employees you should have one <tr> like below -->
-    <tr class="item" th:each="dealership : ${dealerships}">
-        <td th:text="${dealership.getName()}">[dealerships.name]</td>
-        <td th:text="${dealership.getLocation()}">[dealerships.location]</td>
 
-
-
-        <td>
-            <!-- EmployeeController.delete (Only ADMIN can see this element)-->
-            <!--                <form method="POST" th:action="@{'/employees/{id}/delete'(id=${emp.getId()})}"-->
-            <!--                      sec:authorize="hasRole('ROLE_ADMIN')">-->
-            <!--                    <button type="submit" class="delete-item">Delete</button>-->
-            <!--                </form>-->
-            <!-- EmployeeController.showEdit (Only ADMIN can see this element)  sec:authorize="hasRole('ROLE_ADMIN')"-->
-            <a class="dealership" th:href="@{'/dealerships/{id}'(id=${dealership.getId()})}"
+<div class="w-100 row g-4 row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-6 g-4">
+    <div class="col align-self-center" th:each="dealership : ${dealerships}">
+        <div class="card h-100 mx-auto" style="width: 15rem;">
+            <img src="../images/dealership.png" class="card-img-top" alt="carimage">
+            <div class="card-body">
+                <h5 th:text="${dealership.getName()}" class="card-title"></h5>
+            </div>
+            <div>
+            <iframe th:src=${dealership.getLocation()} width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <a class="btn btn-secondary" th:href="@{'/dealerships/{id}'(id=${dealership.getId()})}"
             >Visit Dealership</a>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
