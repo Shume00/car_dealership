@@ -43,21 +43,12 @@
         </div>
     </div>
 </nav>
-<!-- The form should submit to EmployeeController.create or EmployeeController.update,
-     depending on whether we are creating or editing an entity -->
+
 <form method="POST" th:action=" ${car != null} ? @{'/cars/{id}' (id=${car.getId()})} : @{'/cars'}">
-<!--    ${emp != null} ? @{'/employees/{id}'(id=${emp.getId()})} : @{'/employees'}-->
-<!--    <div>-->
-<!--        <label for="f1">Car Brand</label>-->
-<!--        <input type="text"-->
-<!--               id="f1"-->
-<!--               name="carBrand"-->
-<!--               required>-->
-<!--    </div>-->
+
     <div>
         <label>Car Brand</label><br/>
         <select id="f1" name="carBrand" >
-            <!-- For each type you should have one <option> like below  -->
             <option th:each="carBrand : ${carBrands}" th:text="${carBrand.getName()}" th:value="${carBrand.getId()}"
                     th:selected=" ${car!=null} ? ${car.getCarBrand().equals(carBrand)} "> [CarBrand_name]</option>
         </select>
@@ -73,7 +64,6 @@
     </div>
     <div>
         <label for="f3">Year</label>
-        <!-- Do not set the value here -->
         <input type="number"
                id="f3"
                name="year"
@@ -91,19 +81,10 @@
     <div>
         <label>Dealership</label><br/>
         <select id="f4" name="dealership" >
-            <!-- For each type you should have one <option> like below  -->
             <option th:each="dealership : ${dealerships}" th:text="${dealership.getName()}" th:value="${dealership.getId()}"
                     th:selected=" ${car!=null} ? ${car.getDealership().equals(dealership)} "> [dealersip_name]</option>
         </select>
     </div>
-<!--    <div>-->
-<!--        <label>Skills</label><br/>-->
-<!--        <select id="f5"  multiple name="skillId" >-->
-<!--            &lt;!&ndash; For each skill you should have one <option> like below  th:selected="${emp?.getSkills().contains(skill)}" &ndash;&gt;-->
-<!--            <option th:each="skill : ${skills}" th:value="${skill.getId()}" th:text="${skill.getName()}"-->
-<!--                    th:selected=" ${emp!=null} ? ${emp.getSkills().contains(skill)} " > [skill.name]</option>-->
-<!--        </select>-->
-<!--    </div>-->
 
     <button id="submit" type="submit" class="btn btn-primary">Submit</button>
     <a id="back" href="/cars" type="button" class="btn btn-secondary">Back to cars</a>
